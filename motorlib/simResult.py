@@ -144,6 +144,7 @@ class SimulationResult:
             "regression": LogChannel("Regression Depth", tuple, "m"),
             "web": LogChannel("Web", tuple, "m"),
             "exitPressure": LogChannel("Nozzle Exit Pressure", float, "Pa"),
+            "exitTemperature": LogChannel("Nozzle Exit Temperature", float, "K"),
             "dThroat": LogChannel("Change in Throat Diameter", float, "m"),
             "machNumber": LogChannel("Core Mach Number", tuple, ""),
         }

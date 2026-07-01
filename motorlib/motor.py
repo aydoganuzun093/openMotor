@@ -273,6 +273,7 @@ class Motor:
         simRes.channels["regression"].addData([0 for grains in self.grains])
         simRes.channels["web"].addData([grain.getWebLeft(0) for grain in self.grains])
         simRes.channels["exitPressure"].addData(0)
+        simRes.channels["exitTemperature"].addData(0)
         simRes.channels["dThroat"].addData(0)
         simRes.channels["machNumber"].addData([0 for grain in self.grains])
 
@@ -355,10 +356,16 @@ class Motor:
                 )
             simRes.channels["machNumber"].addData(perGrainMachNumber)
 
-            # Calculate Exit Pressure
-            _, _, gamma, _, _ = self.propellant.getCombustionProperties(pressure)
+            # Calculate Exit Pressure and Temperature
+            _, _, gamma, combTemp, _ = self.propellant.getCombustionProperties(pressure)
             exitPressure = self.nozzle.getExitPressure(gamma, pressure)
             simRes.channels["exitPressure"].addData(exitPressure)
+
+            if pressure > 0:
+                exitTemp = combTemp * ((exitPressure / pressure) ** ((gamma - 1) / gamma))
+            else:
+                exitTemp = 0
+            simRes.channels["exitTemperature"].addData(exitTemp)
 
             # Calculate force
             force = self.calcForce(
