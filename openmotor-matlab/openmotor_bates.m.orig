@@ -15,9 +15,9 @@ burnout_thrust_thres = 0.1; % Thrust burnout threshold, N
 
 %% Inputs
 % Design Targets
-target_total_impulse = 2000; % Required Total Impulse, Ns
-target_burn_time = 1.5; % Required Burn Time, s
-target_chamber_pressure = 3.5e6; % Required Average Chamber Pressure, Pa
+target_total_impulse = 5000; % Required Total Impulse, Ns
+target_burn_time = 1.0; % Required Burn Time, s
+target_chamber_pressure = 4.0e6; % Required Average Chamber Pressure, Pa
 
 % Propellant Properties
 prop.density = 1710; % kg/m^3 (approximate value for APCP)
@@ -36,7 +36,7 @@ nozzle.slag_coeff = 0; % (m*Pa)/s
 nozzle.erosion_coeff = 0; % m/(s*Pa)
 
 % Fixed Grain Geometry Inputs
-grain.num_grains = 2; % Can be modified as an input
+grain.num_grains = 3; % Can be modified as an input
 
 %% Design Geometry Calculations
 % 1. Calculate Burn Rate and Web
